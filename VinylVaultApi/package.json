@@ -4,6 +4,7 @@
     "description": "API for mobile App VinylVault",
     "main": "src/server.ts",
     "scripts": {
+        "start": "nodemon",
         "test": "jest --config jest.config.js --coverage",
         "build": "rm -rf build/ && tsc"
     },
