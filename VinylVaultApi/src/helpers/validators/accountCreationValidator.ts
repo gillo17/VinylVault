@@ -1,4 +1,3 @@
-import ValidationError from '../customErrorTypes/validationError';
 import { userAccountInterface } from '../../interfaces/userAccountInterface';
 
 export class AccountCreationValidator {

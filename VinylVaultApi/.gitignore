@@ -1,2 +1,3 @@
-/VinylVaultApi/node_modules/*
-/VinylVaultApi/.env
+./VinylVaultApi/node_modules/*
+./VinylVaultApi/.env
+./VinylVault/node_modules/*
