@@ -1,14 +1,13 @@
-import { interfaces } from "inversify";
-import { fluentProvide } from "inversify-binding-decorators";
 import { Container } from 'inversify';
 import { AccountCreationValidator } from './helpers/validators/accountCreationValidator';
 import { PartyService } from './services/partyService';
-import { PartyController } from './controllers/partyController';
+import { TYPES } from './types';
+import { UserAccountMapper } from './mappers/userAccountMapper';
 
 const container = new Container();
 
-container.bind<PartyService>(PartyService).toSelf();
-container.bind<AccountCreationValidator>(AccountCreationValidator).toSelf();
-container.bind<PartyController>(PartyController).toSelf();
+container.bind<PartyService>(TYPES.PartyService).to(PartyService);
+container.bind<AccountCreationValidator>(TYPES.AccountCreationValidator).to(AccountCreationValidator);
+container.bind<UserAccountMapper>(TYPES.UserAccountMapper).to(UserAccountMapper);
 
 export default container;

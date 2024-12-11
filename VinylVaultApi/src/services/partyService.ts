@@ -1,6 +1,5 @@
-import { inject } from "inversify";
 import PartyDao from "../Daos/partyDao";
-import { injectable } from "inversify";
+import { injectable, inject } from "inversify";
 import { userAccountInterface } from "../interfaces/userAccountInterface";
 
 @injectable()

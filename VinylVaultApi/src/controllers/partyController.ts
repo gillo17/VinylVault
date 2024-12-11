@@ -4,13 +4,11 @@ import { Controller } from '../helpers/decorators/controller';
 import { Route } from '../helpers/decorators/route';
 import { PartyService } from '../services/partyService';
 import { AccountCreationValidator } from '../helpers/validators/accountCreationValidator';
-import ValidationError from '../helpers/customErrorTypes/validationError';
 import { inject } from 'inversify';
 import { UserAccountMapper } from '../mappers/userAccountMapper';
 import { userAccountInterface } from '../interfaces/userAccountInterface';
 
 @Controller()
-@provideTransient(PartyController)
 export class PartyController {
 
     public constructor(
