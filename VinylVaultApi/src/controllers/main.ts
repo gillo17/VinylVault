@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { Controller } from '../decorators/controller';
-import { Route } from '../decorators/route';
+import { Controller } from '../helpers/decorators/controller';
+import { Route } from '../helpers/decorators/route';
 
 @Controller()
 class MainController {
