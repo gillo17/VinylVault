@@ -1,15 +1,19 @@
-export const TYPES = {
-    // validators
-    AccountCreationValidator: Symbol.for("AccountCreationValidator"),
+const Types = {
+
+    // controllers
+    UserController: Symbol.for('UserController'),
 
     // Mappers
-    UserAccountMapper: Symbol.for("UserAccountMapper"),
+    UserMappers: Symbol.for('UserMappers'),
 
     // Services
-    PartyService: Symbol.for("PartyService")
+    UserService: Symbol.for('UserService'),
 
-    // Controllers
+    // Daos
+    UserDao: Symbol.for('UserDao'),
 
-    // DAOs
+    // Utils
+    SaltAndHash: Symbol.for('SaltAndHash')
+};
 
-}
+export default Types;
