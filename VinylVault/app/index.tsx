@@ -1,8 +1,8 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Button from './components/button';
 import TextBox from './components/textBox';
-import { LoginService } from './services/loginService';
+import LoginService from './services/loginService';
 
 const VinylVaultLogo = require('../assets/images/VinylVaultLogo.png');
 
@@ -12,7 +12,6 @@ export default function logInScreen() {
   return (
     <View style={styles.container}>
       <Image source={VinylVaultLogo} style={styles.image} />
-
 
       <TextBox placeholderText='Username' boxWidth={300}></TextBox>
       <TextBox placeholderText='Password' boxWidth={300}></TextBox>
