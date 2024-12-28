@@ -7,26 +7,31 @@ import userRouter from './routes/user';
 
 const router = express();
 
-mongoose.connect(config.mongo.url, {w: 'majority', retryWrites: true})
-.then(() => {
-    Logging.info('Connected to MongoDB');
-    ServerStart()
-})
-.catch(error => {
-    Logging.error('error connecting to MongoDB');
-    Logging.error(error);
-});
+mongoose
+    .connect(config.mongo.url, { w: 'majority', retryWrites: true })
+    .then(() => {
+        Logging.info('Connected to MongoDB');
+        ServerStart();
+    })
+    .catch((error) => {
+        Logging.error('error connecting to MongoDB');
+        Logging.error(error);
+    });
 
 const ServerStart = () => {
     router.use((req, res, next) => {
-        Logging.info(`Incoming request: ${req.method} url - ${req.originalUrl}`);
+        Logging.info(
+            `Incoming request: ${req.method} url - ${req.originalUrl}`
+        );
 
         res.on('finish', () => {
-            Logging.info(`Outgoing response: method - ${req.method} Status - ${res.statusCode}`);
+            Logging.info(
+                `Outgoing response: method - ${req.method} Status - ${res.statusCode}`
+            );
         });
 
-        next()
-    })
+        next();
+    });
 
     router.use(express.urlencoded({ extended: true }));
     router.use(express.json());
@@ -34,9 +39,12 @@ const ServerStart = () => {
     router.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.setHeader(
+            'Access-Control-Allow-Headers',
+            'Content-Type, Authorization'
+        );
         next();
-    })
+    });
 
     router.use('/user', userRouter);
 
@@ -47,5 +55,7 @@ const ServerStart = () => {
         res.status(404).json({ message: error.message });
     });
 
-    http.createServer(router).listen(config.server.port, () => {Logging.info(`Server is running on port ${config.server.port}`)});
+    http.createServer(router).listen(config.server.port, () => {
+        Logging.info(`Server is running on port ${config.server.port}`);
+    });
 };

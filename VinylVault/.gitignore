@@ -14,7 +14,7 @@ expo-env.d.ts
 *.jks
 *.p8
 *.p12
-*.key
+*.keygit 
 *.mobileprovision
 
 # Metro

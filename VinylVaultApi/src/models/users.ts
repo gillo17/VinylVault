@@ -1,10 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IUser {
+    firstname: string;
+    lastname: string;
     email: string;
     password: string;
-    firstname: string; 
-    lastname: string;
 }
 
 export interface IUserLogin {
@@ -21,7 +21,7 @@ export interface UserAuthorisation {
         salt: string;
         hash: string;
         iterations: number;
-    }
+    };
 }
 
 export interface IUserModel extends IUser, IUserLogin, Document {}
@@ -34,12 +34,12 @@ const UserSchema: Schema = new Schema(
         Authorisation: {
             salt: { type: String, required: true },
             hash: { type: String, required: true },
-            iterations: { type: Number, required: true }
-        }
+            iterations: { type: Number, required: true },
+        },
     },
 
     {
-        versionKey: false
+        versionKey: false,
     }
 );
 

@@ -1,11 +1,12 @@
 import { StyleSheet, View, Pressable, Text } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 type Props = {
-  label: string;
-  theme?: 'primary';
-  size_width: number;
-  onPress: () => void;
-};
+  label?: string;
+  theme?: string | undefined;
+  size_width?: number;
+  onPress?: () => void;
+};  
 
 export default function Button({ label, theme, size_width, onPress }: Props) {
   if (theme === 'primary') {
@@ -19,6 +20,18 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
           style={[styles.button, { backgroundColor: '#207178' }]}
           onPress={onPress}>
           <Text style={[styles.buttonLabel, { color: '#fff' }]}>{label}</Text>
+        </Pressable>
+      </View>
+    );
+  } else if (theme === 'backButton') {
+    return (
+          <View
+      style={[
+        stylesBackButton.buttonContainer, 
+        { width: size_width },
+        ]}>
+        <Pressable style={stylesBackButton.button} onPress={onPress}>
+          <Ionicons name="arrow-back-outline" size={25} color="white" />
         </Pressable>
       </View>
     );
@@ -55,3 +68,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+const stylesBackButton = StyleSheet.create({
+  buttonContainer:{
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#207178', 
+    borderRadius: 40,
+    width: 35,
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+  })

@@ -3,17 +3,19 @@ import { UserMappers } from '../mappers/userMappers';
 import { UserService } from '../services/userService';
 import Types from '../types';
 import { injectable, inject } from 'inversify';
+import Logging from '../utils/Logging';
 
 @injectable()
 export class UserController {
-
     public constructor(
         @inject(Types.UserMappers) private userMappers: UserMappers,
         @inject(Types.UserService) private userService: UserService
     ) {}
 
-
-    public createUser = async (req: Request, res: Response): Promise<Response> => {
+    public createUser = async (
+        req: Request,
+        res: Response
+    ): Promise<Response> => {
         const userInfo = this.userMappers.mapRequestToUser(req);
 
         try {
@@ -29,9 +31,13 @@ export class UserController {
         }
     };
 
-    public accountLogin = async (req: Request, res: Response): Promise<Response> => {
-        
+    public accountLogin = async (
+        req: Request,
+        res: Response
+    ): Promise<Response> => {
         const userInfo = this.userMappers.mapRequestToUserLogin(req);
+
+        Logging.info(userInfo);
 
         const result = await this.userService.accountLogin(userInfo);
 
