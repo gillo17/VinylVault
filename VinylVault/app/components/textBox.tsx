@@ -6,7 +6,7 @@ type Props = {
     boxWidth?: number;
   };
 
-const TextInputExample = ({ placeholderText, boxWidth }: Props) => {
+const textInput = ({ placeholderText, boxWidth }: Props) => {
   const [text, onChangeText] = React.useState('');
 
   return (
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TextInputExample;
+export default textInput;

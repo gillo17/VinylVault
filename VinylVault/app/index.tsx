@@ -3,6 +3,8 @@ import { Image } from 'expo-image';
 import Button from './components/button';
 import TextBox from './components/textBox';
 import LoginService from './services/loginService';
+import { router } from 'expo-router';
+
 
 const VinylVaultLogo = require('../assets/images/VinylVaultLogo.png');
 
@@ -17,7 +19,7 @@ export default function logInScreen() {
       <TextBox placeholderText='Password' boxWidth={300}></TextBox>
 
       <View style={styles.buttonContainer}>
-        <Button label="Create Account" size_width={125} onPress={() => loginService.createAccount()} />
+        <Button label="Create Account" size_width={125} onPress={() => router.replace('/createAccount')} />
         <Button theme="primary" label="Sign In" size_width={150} onPress={() => loginService.login("1", "2")} />
       </View>
     </View>
