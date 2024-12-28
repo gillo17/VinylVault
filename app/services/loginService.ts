@@ -2,11 +2,22 @@ import { router } from 'expo-router';
 import CreateAccountInterface from '../interfaces/createAccountInterface';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
+import LoginAccountInterface from '../interfaces/loginAccountInterface';
 
 export default class LoginService {
 
-    login(username: string, password: string) {
-        router.replace('/search');    }
+    async login(userData: LoginAccountInterface) {
+        const response = await axios.post('http://localhost:3000/user/login', userData);
+        if (response.status === 200) {
+            router.replace('/collections');
+        } else {
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'Invalid username or password.',
+            });
+        }   
+    }
 
     async createAccount(accountInfo: CreateAccountInterface) {
         try {

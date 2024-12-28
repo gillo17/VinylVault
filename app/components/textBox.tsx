@@ -4,10 +4,11 @@ import {StyleSheet, TextInput, View} from 'react-native';
 type Props = {
     placeholderText?: string;
     boxWidth?: number;
+    onChangeText?: (text: string) => void;
+    text?: string;
   };
 
-const textInput = ({ placeholderText, boxWidth }: Props) => {
-  const [text, onChangeText] = React.useState('');
+const textInput = ({ placeholderText, boxWidth, onChangeText, text }: Props) => {
 
   return (
     <View>

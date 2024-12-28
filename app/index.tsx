@@ -1,9 +1,11 @@
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Button from './components/button';
 import TextBox from './components/textBox';
 import LoginService from './services/loginService';
 import { router } from 'expo-router';
+import LoginAccountInterface from './interfaces/loginAccountInterface';
 
 
 const VinylVaultLogo = require('../assets/images/VinylVaultLogo.png');
@@ -11,16 +13,27 @@ const VinylVaultLogo = require('../assets/images/VinylVaultLogo.png');
 let loginService = new LoginService();
 
 export default function logInScreen() {
+
+  const [username, onChangeUsername] = React.useState('');
+  const [password, onChangePassword] = React.useState('');
+
+  const userData: LoginAccountInterface = {
+    username: username,
+    password: password,
+  }
+  
   return (
     <View style={styles.container}>
       <Image source={VinylVaultLogo} style={styles.image} />
 
-      <TextBox placeholderText='Username' boxWidth={300}></TextBox>
-      <TextBox placeholderText='Password' boxWidth={300}></TextBox>
+      
+
+      <TextBox placeholderText='Username' boxWidth={300} onChangeText={onChangeUsername} text={username} />
+      <TextBox placeholderText='Password' boxWidth={300} onChangeText={onChangePassword} text={password} />
 
       <View style={styles.buttonContainer}>
         <Button label="Create Account" size_width={125} onPress={() => router.replace('/createAccount')} />
-        <Button theme="primary" label="Sign In" size_width={150} onPress={() => loginService.login("1", "2")} />
+        <Button theme="primary" label="Sign In" size_width={150} onPress={() => loginService.login(userData)} />
       </View>
     </View>
   );
