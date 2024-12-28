@@ -1,22 +1,24 @@
 import mongoose from 'mongoose';
-import User, { IUserLogin } from '../models/users';
+import User, { IUserLogin, UserModel } from '../models/users';
 import { SaltAndHash } from '../utils/saltAndHash';
 import { inject, injectable } from 'inversify';
 import Types from '../types';
+import Logging from '../utils/Logging';
 
 @injectable()
 export class UserMappers {
+    constructor(@inject(Types.SaltAndHash) private saltAndHash: SaltAndHash) {}
 
-    constructor(
-        @inject(Types.SaltAndHash) private saltAndHash: SaltAndHash,
-    ) {}
+    public async mapRequestToUser(req: any): Promise<UserModel> {
+        const email = req.body.email;
+        const password = req.body.password;
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
 
-    public mapRequestToUser(req: any) {
-        const  { email, password, firstname, lastname } = req.body;
+        const [salt, hash, iterations] =
+            this.saltAndHash.hashPassword(password);
 
-        const [salt, hash, iterations] = this.saltAndHash.hashPassword(password);
-
-        const user = new User({
+        const user: UserModel = new User({
             _id: new mongoose.Types.ObjectId(),
             email,
             firstname,
@@ -24,9 +26,9 @@ export class UserMappers {
             Authorisation: {
                 salt,
                 hash,
-                iterations
-            }
-        })
+                iterations,
+            },
+        });
 
         return user;
     }
@@ -36,8 +38,8 @@ export class UserMappers {
 
         const user: IUserLogin = {
             email: email,
-            password: password
-        }
+            password: password,
+        };
 
         return user;
     }

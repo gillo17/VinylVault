@@ -12,6 +12,17 @@ export interface IUserLogin {
     password: string;
 }
 
+export interface UserModel {
+    email: string;
+    firstname: string;
+    lastname: string;
+    Authorisation: {
+        salt: string;
+        hash: string;
+        iterations: number;
+    };
+}
+
 export interface UserAuthorisation {
     _id: string;
     email: string;
@@ -24,7 +35,7 @@ export interface UserAuthorisation {
     };
 }
 
-export interface IUserModel extends IUser, IUserLogin, Document {}
+export interface IUserModel extends UserModel, IUserLogin, Document {}
 
 const UserSchema: Schema = new Schema(
     {

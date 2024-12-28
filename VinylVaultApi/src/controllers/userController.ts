@@ -16,7 +16,7 @@ export class UserController {
         req: Request,
         res: Response
     ): Promise<Response> => {
-        const userInfo = this.userMappers.mapRequestToUser(req);
+        const userInfo = await this.userMappers.mapRequestToUser(req);
 
         try {
             const result = await this.userService.createuser(userInfo);

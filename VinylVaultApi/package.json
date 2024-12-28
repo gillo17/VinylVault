@@ -5,7 +5,7 @@
     "main": "src/server.ts",
     "scripts": {
         "start": "nodemon",
-        "test": "jest --config jest.config.js --coverage",
+        "test": "jest --config jest.config.ts --coverage ./test",
         "build": "rm -rf build/ && tsc"
     },
     "author": "",
