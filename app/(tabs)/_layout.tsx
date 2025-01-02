@@ -1,21 +1,31 @@
-import { Tabs } from 'expo-router';
+import { Tabs, Redirect } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useSession } from '../utils/ctx';
 
 export default function TabLayout() {
+
+  const { session, isLoading } = useSession();
+
+  if (!session) {
+
+    return <Redirect href="/" />;
+  }
+ 
   return (
+    
     <Tabs
-    screenOptions={{
-      tabBarActiveTintColor: '#207178',
-      tabBarStyle: {
-        backgroundColor: '#F2DDCE',
-        },
-      headerShadowVisible: false,
-      headerStyle: {
+      screenOptions={{
+        tabBarActiveTintColor: '#207178',
+        tabBarStyle: {
           backgroundColor: '#F2DDCE',
-      }
-    }}
+        },
+        headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: '#F2DDCE',
+        },
+      }}
     >
-      <Tabs.Screen 
+      <Tabs.Screen
         name="search"
         options={{
           title: 'Search',
@@ -24,8 +34,7 @@ export default function TabLayout() {
           ),
         }}
       />
-
-      <Tabs.Screen 
+      <Tabs.Screen
         name="wishlist"
         options={{
           title: 'wishlist',
@@ -34,8 +43,7 @@ export default function TabLayout() {
           ),
         }}
       />
-
-      <Tabs.Screen 
+      <Tabs.Screen
         name="scan"
         options={{
           title: 'scan',
@@ -44,8 +52,7 @@ export default function TabLayout() {
           ),
         }}
       />
-
-      <Tabs.Screen 
+      <Tabs.Screen
         name="collections"
         options={{
           title: 'collections',
@@ -54,8 +61,7 @@ export default function TabLayout() {
           ),
         }}
       />
-
-      <Tabs.Screen 
+      <Tabs.Screen
         name="account"
         options={{
           title: 'account',
