@@ -1,4 +1,4 @@
-import  { useEffect, useCallback, useReducer } from 'react';
+import { useEffect, useCallback, useReducer } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 
@@ -42,7 +42,8 @@ export function useStorageState(key: string): UseStateHook<string> {
     if (Platform.OS === 'web') {
       try {
         if (typeof localStorage !== 'undefined') {
-          setState(localStorage.getItem(key));
+          const storedValue = localStorage.getItem(key);
+          setState(storedValue);
         }
       } catch (e) {
         console.error('Local storage is unavailable:', e);

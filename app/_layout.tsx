@@ -6,14 +6,15 @@ import { SessionProvider } from './utils/ctx';
 
 export default function RootLayout() {
   return (
-    <Stack>
+    <SessionProvider>
+      <Stack>
+        <Slot />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="createAccount" options={{ headerShown: false }} />
         <Toast />
-        <SessionProvider>
-          <Slot />
-        </SessionProvider>
-    </Stack>
+      </Stack>
+    </SessionProvider>
+
   );
 }

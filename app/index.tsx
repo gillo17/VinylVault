@@ -6,7 +6,7 @@ import TextBox from './components/textBox';
 import LoginService from './services/loginService';
 import { router } from 'expo-router';
 import LoginAccountInterface from './interfaces/loginAccountInterface';
-import './utils/ctx';
+import { useSession } from './utils/ctx';
 
 
 const VinylVaultLogo = require('../assets/images/VinylVaultLogo.png');
@@ -14,6 +14,8 @@ const VinylVaultLogo = require('../assets/images/VinylVaultLogo.png');
 let loginService = new LoginService();
 
 export default function logInScreen() {
+
+  const { signIn } = useSession();
 
   const [username, onChangeUsername] = React.useState('');
   const [password, onChangePassword] = React.useState('');
@@ -34,7 +36,7 @@ export default function logInScreen() {
 
       <View style={styles.buttonContainer}>
         <Button label="Create Account" size_width={125} onPress={() => router.replace('/createAccount')} />
-        <Button theme="primary" label="Sign In" size_width={150} onPress={() => loginService.login(userData )} />
+        <Button theme="primary" label="Sign In" size_width={150} onPress={() => loginService.login(userData, signIn)} />
       </View>
     </View>
   );

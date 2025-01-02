@@ -7,6 +7,7 @@ export default function TabLayout() {
   const { session, isLoading } = useSession();
 
   if (!session) {
+    console.log(session);
 
     return <Redirect href="/" />;
   }
