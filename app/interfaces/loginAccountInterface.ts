@@ -1,5 +1,5 @@
 interface LoginAccountInterface {
-    username: string;
+    email: string;
     password: string;
 }
 
