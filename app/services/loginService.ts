@@ -31,15 +31,18 @@ export default class LoginService {
   async createAccount(accountInfo: CreateAccountInterface) {
     try {
       const response = await axios.post('http://localhost:3000/user/createUser', accountInfo);
-      console.log(response.data);
       if (response.status === 201) {
         router.replace('/');
-        return undefined;
-      } else if (response.status === 500 && response.data.error === 'A user with this email already exists') {
+        Toast.show({
+          type: 'info',
+          text1: 'info!',
+          text2: `Account Created!`,
+        });
+      } else if (response.data.errors) {
         Toast.show({
           type: 'error',
           text1: 'Error!',
-          text2: 'A user with this email already exists.',
+          text2: `${response.data.errors}`,
         });
       }
     } catch (error) {
