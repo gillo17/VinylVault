@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
 import { Image } from 'expo-image';
 import Button from './components/button';
-import TextBox from './components/textBox';
 import LoginService from './services/loginService';
 import { router } from 'expo-router';
 import LoginAccountInterface from './interfaces/loginAccountInterface';
@@ -63,7 +62,7 @@ export default function logInScreen() {
 
         <View style={styles.buttonContainer}>
           <Button label="Create Account" size_width={125} onPress={() => router.replace('/createAccount')} />
-          <Button theme="primary" label="Create Account" size_width={150} onPress={handleSubmit(onSubmit)} />
+          <Button theme="primary" label="Sign In" size_width={150} onPress={handleSubmit(onSubmit)} />
         </View>
 
       </View>

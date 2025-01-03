@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import React from 'react';
 import Toast from 'react-native-toast-message';
 import { Slot } from 'expo-router';
@@ -9,10 +9,11 @@ export default function RootLayout() {
     <SessionProvider>
       <Stack>
         <Slot />
+        <Toast />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
+        <Stack.Screen name="pages" options={{ headerShown: false }}/>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="createAccount" options={{ headerShown: false }} />
-        <Toast />
       </Stack>
     </SessionProvider>
 
