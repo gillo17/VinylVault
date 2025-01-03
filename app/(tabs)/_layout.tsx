@@ -7,8 +7,6 @@ export default function TabLayout() {
   const { session, isLoading } = useSession();
 
   if (!session) {
-    console.log(session);
-
     return <Redirect href="/" />;
   }
  
@@ -29,6 +27,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="search"
         options={{
+          headerShown: false,
           title: 'Search',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'search-sharp' : 'search-outline'} color={color} size={24} />
@@ -38,6 +37,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="wishlist"
         options={{
+          headerShown: false,
           title: 'wishlist',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'heart-sharp' : 'heart-outline'} color={color} size={24} />
@@ -47,6 +47,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="scan"
         options={{
+          headerShown: false,
           title: 'scan',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'add-sharp' : 'add-outline'} color={color} size={24} />
@@ -56,6 +57,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="collections"
         options={{
+          headerShown: false,
           title: 'collections',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'albums-sharp' : 'albums-outline'} color={color} size={24} />
@@ -65,10 +67,18 @@ export default function TabLayout() {
       <Tabs.Screen
         name="account"
         options={{
+          headerShown: false,
           title: 'account',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'person-sharp' : 'person-outline'} color={color} size={24} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="createCollection"
+        options={{
+          tabBarButton: () => null, // Hide the tab bar button
+          headerShown: false,
         }}
       />
     </Tabs>
