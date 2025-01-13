@@ -1,8 +1,10 @@
-import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import { CreateCollectionModel, ViewCollectionModel } from '../interfaces/collectionInterfaces';
 import api from '../utils/axiosInstance';
 import { router } from 'expo-router';
+import { CameraCapturedPicture } from 'expo-camera';
+import * as FileSystem from 'expo-file-system';
+import { Buffer } from 'buffer';
 
 export default class CollectionsService {
 
@@ -40,5 +42,30 @@ export default class CollectionsService {
             });
         }
     }
-}
 
+    async identifyVinyl(photo: CameraCapturedPicture) {
+
+        const photo64 = await FileSystem.readAsStringAsync(photo.uri, { encoding: FileSystem.EncodingType.Base64 });
+        
+        const buffer = Buffer.from(photo64, 'base64');
+
+
+        const formData = new FormData();
+
+        console.log(buffer)
+
+        const blob = new Blob([photo64]);
+
+        formData.append('file', blob);
+
+        try {
+            const response = await api.post('/collections/identifyVinyl', {formData});
+
+            if (response.status == 200) {
+                
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}

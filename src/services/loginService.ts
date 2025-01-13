@@ -1,13 +1,14 @@
 import { router } from 'expo-router';
 import CreateAccountInterface from '../interfaces/createAccountInterface';
-import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import LoginAccountInterface from '../interfaces/loginAccountInterface';
+import api from '../utils/axiosInstance';
+
 
 export default class LoginService {
   async login(userData: LoginAccountInterface, signIn: (token: string) => void): Promise<void> {   
     try {
-      const response = await axios.post('http://localhost:3000/user/accountLogin', userData);
+      const response = await api.post('/user/accountLogin', userData);
 
       if (response.status === 200) {
         signIn(response.data.token);
@@ -30,7 +31,7 @@ export default class LoginService {
 
   async createAccount(accountInfo: CreateAccountInterface) {
     try {
-      const response = await axios.post('http://localhost:3000/user/createUser', accountInfo);
+      const response = await api.post('/user/createUser', accountInfo);
       if (response.status === 201) {
         router.replace('/');
         Toast.show({
