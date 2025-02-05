@@ -49,8 +49,10 @@ export default function collectionsScreen() {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View style={styles.item}>
-              <MaterialCommunityIcons name="inbox-outline" size={100} color="white" />
-              <Text style={styles.text}>{item.collectionName}</Text>
+              <Pressable onPress={() => router.push(`/pages/collectionInfoPage?collectionId=${encodeURIComponent(item.id)}`)}>
+                <MaterialCommunityIcons name="inbox-outline" size={100} color="white" />
+                <Text style={styles.text}>{item.collectionName}</Text>
+              </Pressable>
             </View>
           )}
           contentContainerStyle={styles.itemContainer}

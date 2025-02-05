@@ -1,26 +1,27 @@
-import { Text, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Button } from 'react-native';
 import { useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable } from 'react-native';
-import { CameraView, CameraCapturedPicture, CameraType, useCameraPermissions } from 'expo-camera';
+import { CameraView, CameraCapturedPicture, useCameraPermissions } from 'expo-camera';
 import CollectionsService from '../../services/collectionsService';
-
+import * as ImagePicker from 'expo-image-picker';
+import VinylService from '@/src/services/vinylService';
 
 export default function scanScreen() {
 
   const [permission, requestPermission] = useCameraPermissions();
   const [photo, setPhoto] = useState<CameraCapturedPicture | null>(null);
 
-  const collectionsService = new CollectionsService();
+  const vinylService = new VinylService();
   
   const cameraRef = useRef<CameraView>(null);
   
   const takePicture = async () => {
     if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync({ quality: 1 });
+      const photo = await cameraRef.current.takePictureAsync({ quality: 0, base64: true });
       if (photo) {
         setPhoto(photo);
-        await collectionsService.identifyVinyl(photo);
+        await vinylService.identifyVinyl(photo);
       } 
     }
   };
@@ -80,8 +81,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     alignSelf: 'center',
+    flexDirection: 'row',
   },
   captureButton: {
+    backgroundColor: '#207178',
+    padding: 20,
+    borderRadius: 50,
+  },
+  uploadButton: {
     backgroundColor: '#207178',
     padding: 20,
     borderRadius: 50,

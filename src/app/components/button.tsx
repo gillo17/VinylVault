@@ -35,6 +35,20 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         </Pressable>
       </View>
     );
+  } else if (theme === 'secondary') {
+    return (
+      <View
+      style={[
+        styles.buttonContainer, 
+        { width: size_width },
+        ]}>
+        <Pressable
+          style={[styles.button, { backgroundColor: '#FF9666' }]}
+          onPress={onPress}>
+          <Text style={[styles.buttonLabel, { color: '#fff' }]}>{label}</Text>
+        </Pressable>
+      </View>
+    );
   }
 
   return (
