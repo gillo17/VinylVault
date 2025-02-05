@@ -1,6 +1,6 @@
 import { Tabs, Redirect } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useSession } from '../utils/ctx';
+import { useSession } from '../../utils/ctx';
 
 export default function TabLayout() {
 
@@ -72,13 +72,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'person-sharp' : 'person-outline'} color={color} size={24} />
           ),
-        }}
-      />
-      <Tabs.Screen
-        name="createCollection"
-        options={{
-          tabBarButton: () => null, // Hide the tab bar button
-          headerShown: false,
         }}
       />
     </Tabs>

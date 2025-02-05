@@ -2,13 +2,13 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
 import { Image } from 'expo-image';
 import Button from './components/button';
-import LoginService from './services/loginService';
+import LoginService from '../services/loginService';
 import { router } from 'expo-router';
-import LoginAccountInterface from './interfaces/loginAccountInterface';
-import { useSession } from './utils/ctx';
+import LoginAccountInterface from '../interfaces/loginAccountInterface';
+import { useSession } from '../utils/ctx';
 import { useForm, Controller } from 'react-hook-form';
 
-const VinylVaultLogo = require('../assets/images/VinylVaultLogo.png');
+const VinylVaultLogo = require('../../assets/images/VinylVaultLogo.png');
 
 let loginService = new LoginService();
 

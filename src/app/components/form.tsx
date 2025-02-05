@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { View, Text, TextInput, StyleSheet, SafeAreaView } from 'react-native';
 import Button from './button';
-import CreateAccountInterface from '../interfaces/createAccountInterface';
-import LoginService from '../services/loginService';
+import CreateAccountInterface from '../../interfaces/createAccountInterface';
+import LoginService from '../../services/loginService';
 
 function MyForm() {
   const { control, handleSubmit, formState: { errors } } = useForm<CreateAccountInterface>();

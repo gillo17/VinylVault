@@ -1,11 +1,13 @@
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
-import CollectionsService from '../services/collectionsService';
-import { CreateCollectionModel } from '../interfaces/collectionInterfaces';
+import CollectionsService from '../../services/collectionsService';
+import { CreateCollectionModel } from '../../interfaces/collectionInterfaces';
 import Button from '../components/button';
 import MultilineTextBox from '../components/multiLineTextBox';
 import Toast from 'react-native-toast-message';
+import { router } from 'expo-router';
+
 
 export default function CreateCollectionScreen() {
 
@@ -20,7 +22,11 @@ export default function CreateCollectionScreen() {
   return (
     <View style={styles.container}>
       <Toast />
-        <Text style={styles.heading}> Create Collection </Text>
+      <View style={styles.headerContainer}>
+          <Text style={styles.heading}> Create Collection </Text>
+
+          <Button theme="backButton" onPress={() => router.replace('/collections')} ></Button>
+      </View>
 
         <View style={styles.formContainer}>
           <Controller
@@ -61,6 +67,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 150
+  },
+  headerContainer: {
+    flexDirection: 'row',
   },
   heading: {
     fontSize: 24,

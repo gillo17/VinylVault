@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/components/textBox.tsx"  ]
+, "src/app/components/textBox.tsx"  ]
 }

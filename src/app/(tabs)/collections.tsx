@@ -1,8 +1,8 @@
 import { Text, View, StyleSheet, Pressable, ActivityIndicator, FlatList, ScrollView } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useState } from 'react';
-import CollectionsService from '../services/collectionsService';
-import { ViewCollectionModel } from '../interfaces/collectionInterfaces';
+import CollectionsService from '../../services/collectionsService';
+import { ViewCollectionModel } from '../../interfaces/collectionInterfaces';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
 
@@ -16,7 +16,6 @@ export default function collectionsScreen() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await collectionsService.getCollections();
-      console.log(res)
       setData(res)
       setLoading(false);
     };
@@ -43,21 +42,23 @@ export default function collectionsScreen() {
           </Pressable>
         </View>
       </View>
-      <ScrollView>
+      <View style={{flex: 1}}>
         <FlatList
           style={styles.list}
           data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View style={styles.item}>
-              <MaterialCommunityIcons name="inbox-outline" size={100} color="white" />
-              <Text style={styles.text}>{item.collectionName}</Text>
+              <Pressable onPress={() => router.push(`/pages/collectionInfoPage?collectionId=${encodeURIComponent(item.id)}`)}>
+                <MaterialCommunityIcons name="inbox-outline" size={100} color="white" />
+                <Text style={styles.text}>{item.collectionName}</Text>
+              </Pressable>
             </View>
           )}
           contentContainerStyle={styles.itemContainer}
           numColumns={3}
         />
-      </ScrollView>
+      </View>
     </View>
   );
 }
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     backgroundColor: '#F2DDCE',
-    alignItems: 'center', // Center children horizontally
+    alignItems: 'center',
   },
   headingContainer: {
     flexDirection: 'row',
@@ -97,7 +98,6 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: '#207178',
-    padding: 16,
     marginVertical: 8,
     borderRadius: 5,
     alignItems: 'center',
