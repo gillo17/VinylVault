@@ -8,7 +8,7 @@ export default function saveToCollection() {
 
     const [data, setData] = useState<any | undefined>([]);
     const [loading, setLoading] = useState(true);    
-    const collectionId = useLocalSearchParams<{ collectionId: string }>();
+    const { collectionId } = useLocalSearchParams<{ collectionId: string }>();
 
     const collectionsService = new CollectionsService();
 
@@ -18,7 +18,8 @@ export default function saveToCollection() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await collectionsService.getCollectionInfo(collectionId.collectionId);
+            const res = await collectionsService.getCollectionInfo(collectionId);
+            
             setData(res)
             setLoading(false);
         };
@@ -33,7 +34,6 @@ export default function saveToCollection() {
       </View>
     );
   }
-
   return (
     <View style={styles.rootContainer}>
       <View style={styles.backbuttonContainer}>
@@ -43,7 +43,7 @@ export default function saveToCollection() {
         <Text style={styles.headingText}>{data.collectionName}</Text>
         <Text style={styles.text}>{data.description}</Text>
         <View style={styles.buttonContainer}>
-            <Button theme="secondary" label="Recommended" size_width={125}/>
+            <Button theme="secondary" label="Recommended" onPress={() => router.push(`/pages/recommendedVinyls?collectionId=${encodeURIComponent(collectionId)}`)} size_width={125}/>
             <Button theme="secondary" label="Edit" size_width={150} />
         </View>
       </View>
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F2DDCE',
     alignItems: 'center',
-    padding: 20
+    padding: 20,
+    paddingTop: 50,
   },
   headingContainer: {
     alignItems: 'center',
@@ -129,7 +130,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   backbuttonContainer: {
-    alignItems: 'flex-start',
-    padding: 10,
+    position: 'absolute',
+    top: 10,
+    left: 10,
   }
 });

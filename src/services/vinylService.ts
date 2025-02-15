@@ -77,6 +77,18 @@ export default class VinylService {
         }
     }
 
+    async getRecommendedVinyls(collectionId: string) {
+        try {
+            const response = await api.get(`/vinyl/getRecommendations?collectionId=${collectionId}`);
+
+            return response.data;
+            
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async searchVinyl(artist: string, albumName: string) {
         try {
             const response = await api.get(`/vinyl/searchVinyl?artist=${artist}&album=${albumName}`);

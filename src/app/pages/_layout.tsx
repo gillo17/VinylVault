@@ -23,6 +23,7 @@ export default function PageLayout() {
         <Stack.Screen name="collectionInfoPage" options={{ headerShown: false }}/>
         <Stack.Screen name="vinylInfo" options={{ headerShown: false }}/>
         <Stack.Screen name="submitImageForTraining" options={{ headerShown: false }}/>
+        <Stack.Screen name="recommendedVinyls" options={{ headerShown: false }}/>
       </Stack>
     </NavigationContainer>
     );
