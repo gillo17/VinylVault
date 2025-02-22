@@ -6,7 +6,7 @@ import VinylService from '@/src/services/vinylService';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
-export default function recommendedVinyls() {
+export default function RecommendedVinyls() {
 
     const [data, setData] = useState<any | undefined>([]);
     const [loading, setLoading] = useState(true);    
