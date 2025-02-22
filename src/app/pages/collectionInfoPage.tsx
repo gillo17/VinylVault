@@ -43,7 +43,7 @@ export default function saveToCollection() {
         <Text style={styles.headingText}>{data.collectionName}</Text>
         <Text style={styles.text}>{data.description}</Text>
         <View style={styles.buttonContainer}>
-            <Button theme="secondary" label="Recommended" onPress={() => router.push(`/pages/recommendedVinyls?collectionId=${encodeURIComponent(collectionId)}`)} size_width={125}/>
+            <Button theme="secondary" label="Recommended" onPress={() => router.push(`/pages/RecommendedVinyls?collectionId=${encodeURIComponent(collectionId)}`)} size_width={125}/>
             <Button theme="secondary" label="Edit" size_width={150} />
         </View>
       </View>

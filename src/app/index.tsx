@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
 import { Image } from 'expo-image';
 import Button from './components/button';
@@ -13,6 +13,9 @@ const VinylVaultLogo = require('../../assets/images/VinylVaultLogo.png');
 let loginService = new LoginService();
 
 export default function logInScreen() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const { control, handleSubmit, formState: { errors } } = useForm<LoginAccountInterface>();
 
@@ -34,7 +37,10 @@ export default function logInScreen() {
               style={styles.input}
               placeholder="Email"
               onBlur={onBlur}
-              onChangeText={onChange}
+              onChangeText={ text => {
+                onChange(text)
+                setEmail(text)
+              }}
               value={value}
             />
           )}
@@ -50,7 +56,10 @@ export default function logInScreen() {
               style={styles.input}
               placeholder="Password"
               onBlur={onBlur}
-              onChangeText={onChange}
+              onChangeText={ text => {
+                onChange(text)
+                setPassword(text)
+              }}              
               value={value}
               secureTextEntry={true}
             />
