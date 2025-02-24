@@ -1,6 +1,7 @@
 import { CameraCapturedPicture } from "expo-camera";
 import { router } from "expo-router";
 import api from "../utils/axiosInstance";
+import Toast from "react-native-toast-message";
 
 export default class VinylService {
     async identifyVinyl(photo: CameraCapturedPicture ) {
@@ -24,7 +25,11 @@ export default class VinylService {
                 return 'Error Occurred while identifying vinyl';
             }
         } catch (error) {
-            console.log(error);
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
         }
     }
 
@@ -42,11 +47,18 @@ export default class VinylService {
             if (response.status == 200) {
                 return response.url;
             } else {
-                console.log(response)
-                return 'Error Occurred while uploading to S3';
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error!',
+                    text2: 'An Error has Occured :( ',
+                });
             }
         } catch (error) {
-            console.log(error);
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
         }
     }
 
@@ -61,7 +73,11 @@ export default class VinylService {
                 console.log(response)
             }
         } catch (error) {
-            console.log(error);
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
         }
     }
 
@@ -73,7 +89,11 @@ export default class VinylService {
             
 
         } catch (error) {
-            console.log(error);
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
         }
     }
 
@@ -83,9 +103,46 @@ export default class VinylService {
 
             return response.data;
             
+        } catch (error) {
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
+        }
+    }
+
+    async searchVinylWishlist(queryString: string) {
+        try {
+            const response = await api.get(`/vinyl/searchVinylWishlist?queryString=${queryString}`);
+            return response.data;
 
         } catch (error) {
-            console.log(error);
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
+        }
+    }
+
+    async saveVinylToWishlist(albumId: string) {
+        try {
+            const response = await api.post(`/vinyl/saveVinylToWishlist?albumId=${albumId}`);
+            if (response.status == 200) {
+                Toast.show({
+                    type: 'info',
+                    text1: 'Info!',
+                    text2: 'Album Added to Wishlist!',
+                });
+            }
+
+        } catch (error) {
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
         }
     }
 
@@ -96,10 +153,18 @@ export default class VinylService {
             if (response.status == 200) {
                 return response.data;
             } else {
-                console.log(response)
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error!',
+                    text2: 'An Error has Occured :( ',
+                });
             }
         } catch (error) {
-            console.log(error);
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
         }
     }
 

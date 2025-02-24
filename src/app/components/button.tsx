@@ -35,6 +35,30 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         </Pressable>
       </View>
     );
+  } else if (theme === 'searchButton') {
+    return (
+          <View
+      style={[
+        stylesBackButton.buttonContainer, 
+        { width: size_width, paddingLeft: 50 },
+        ]}>
+        <Pressable style={stylesBackButton.button} onPress={onPress}>
+          <Ionicons name="search-outline" size={25} color="white" />
+        </Pressable>
+      </View>
+    );
+  } else if (theme === 'favouriteButton') {
+    return (
+          <View
+      style={[
+        stylesBackButton.buttonContainer, 
+        { width: size_width, paddingLeft: 50 },
+        ]}>
+        <Pressable style={stylesBackButton.button} onPress={onPress}>
+          <Ionicons name="heart-outline" size={25} color="white" />
+        </Pressable>
+      </View>
+    );
   } else if (theme === 'secondary') {
     return (
       <View

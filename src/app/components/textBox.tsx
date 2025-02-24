@@ -3,17 +3,17 @@ import {StyleSheet, TextInput, View} from 'react-native';
 
 type Props = {
     placeholderText?: string;
-    boxWidth?: number;
     onChangeText?: (text: string) => void;
     text?: string;
+    style?: any;
   };
 
-const textInput = ({ placeholderText, boxWidth, onChangeText, text }: Props) => {
+const textInput = ({ placeholderText, style, onChangeText, text }: Props) => {
 
   return (
-    <View>
+    <View style={{flex: 1}}>
         <TextInput
-            style={[styles.input, {backgroundColor: '#fff', width: boxWidth}]}
+            style={[styles.input, {backgroundColor: '#fff'}, style]}
             onChangeText={onChangeText}
             value={text}
             placeholder={placeholderText}
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    borderRadius: 50
+    borderRadius: 50,
+    width: '100%',
   },
 });
 
