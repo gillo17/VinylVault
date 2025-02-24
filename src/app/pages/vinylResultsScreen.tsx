@@ -27,9 +27,6 @@ export default function vinylResultsScreen() {
   useEffect(() => {
     const fetchData = async () => {
 
-      console.log(artist);
-      console.log(album);
-
       let results: any[] = [];
 
       if (artist && album) {

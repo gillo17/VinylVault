@@ -1,6 +1,7 @@
 import { Tabs, Redirect } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useSession } from '../../utils/ctx';
+import Toast from 'react-native-toast-message';
 
 export default function TabLayout() {
 
@@ -11,7 +12,6 @@ export default function TabLayout() {
   }
  
   return (
-    
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#207178',
@@ -74,6 +74,7 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Toast />
     </Tabs>
   );
 }
