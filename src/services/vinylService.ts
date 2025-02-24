@@ -62,6 +62,28 @@ export default class VinylService {
         }
     }
 
+    async getVinylWishlist() {
+        try {
+            const response = await api.get('/vinyl/getAlbumsInlWishlist');
+
+            if (response.status == 200) {
+                return response.data.albums;
+            } else {
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error!',
+                    text2: 'An Error has Occured :( ',
+                });
+            }
+        } catch (error) {
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :( ' + error,
+            });
+        }
+    }
+
     async generateS3Url() {
         try {
             const response = await api.get('/collections/getUrl');
