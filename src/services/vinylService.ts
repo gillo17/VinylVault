@@ -2,6 +2,7 @@ import { CameraCapturedPicture } from "expo-camera";
 import { router } from "expo-router";
 import api from "../utils/axiosInstance";
 import Toast from "react-native-toast-message";
+import { albumData } from "../interfaces/vinyl";
 
 export default class VinylService {
     async identifyVinyl(photo: CameraCapturedPicture ) {
@@ -119,7 +120,7 @@ export default class VinylService {
         }
     }
 
-    async getRecommendedVinyls(collectionId: string) {
+    async getRecommendedVinyls(collectionId: string): Promise<albumData[]> {
         try {
             const response = await api.get(`/vinyl/getRecommendations?collectionId=${collectionId}`);
 
@@ -131,6 +132,7 @@ export default class VinylService {
                 text1: 'Error!',
                 text2: 'An Error has Occured :( ' + error,
             });
+            return [];
         }
     }
 
