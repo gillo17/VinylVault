@@ -18,18 +18,22 @@ export default class VinylService {
 
             if (response.status == 200 && response.data.message == "Vinyl Identified") {
 
-                router.replace(`/pages/vinylResultsScreen?artist=${encodeURIComponent(response.data.artist)}&album=${encodeURIComponent(response.data.album)}`);
+                router.push(`/pages/vinylResultsScreen?artist=${encodeURIComponent(response.data.artist)}&album=${encodeURIComponent(response.data.album)}`);
             } else if (response.data.message == "Vinyl Not Identified") {
                 router.push(`/pages/vinylNotFound?key=${key}`);
             
             } else {
-                return 'Error Occurred while identifying vinyl';
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error!',
+                    text2: 'An Error has Occured :( ',
+                });    
             }
         } catch (error) {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :( ',
             });
         }
     }
@@ -48,22 +52,14 @@ export default class VinylService {
             if (response.status == 200) {
                 return response.url;
             } else {
-                Toast.show({
-                    type: 'error',
-                    text1: 'Error!',
-                    text2: 'An Error has Occured :( ',
-                });
+                throw new Error("Error Uploading to S3");
             }
         } catch (error) {
-            Toast.show({
-                type: 'error',
-                text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
-            });
+            throw new Error("Error Uploading to S3");
         }
     }
 
-    async getVinylWishlist() {
+    async getVinylWishlist(): Promise<albumData[]> {
         try {
             const response = await api.get('/vinyl/getAlbumsInlWishlist');
 
@@ -73,34 +69,31 @@ export default class VinylService {
                 Toast.show({
                     type: 'error',
                     text1: 'Error!',
-                    text2: 'An Error has Occured :( ',
+                    text2: 'An Error has Occured :( Error Fetching Vinyl Wishlist',
                 });
+                return [];
             }
         } catch (error) {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :( Error Fetching Vinyl Wishlist',
             });
+            return [];
         }
     }
 
-    async generateS3Url() {
+    async generateS3Url(): Promise<[string, string]> {
         try {
             const response = await api.get('/collections/getUrl');
 
             if (response.status == 200) {
                 return [response.data.url,response.data.key];
             } else {
-                'Error Occurred while generating URL';
-                console.log(response)
+                throw new Error('Error Occurred while generating URL');
             }
         } catch (error) {
-            Toast.show({
-                type: 'error',
-                text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
-            });
+            throw new Error('Error Occurred while generating URL');
         }
     }
 
@@ -115,7 +108,7 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }
@@ -145,7 +138,7 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }
@@ -165,7 +158,7 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }
@@ -187,7 +180,7 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }
