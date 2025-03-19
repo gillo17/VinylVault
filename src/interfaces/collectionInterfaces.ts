@@ -1,3 +1,5 @@
+import { albumData } from "./vinyl";
+
 export interface ViewCollectionModel {
     id: string;
     collectionName: string;
@@ -17,4 +19,12 @@ export interface SubmitImageForTraining {
 export interface vinylSearchInterface {
     artist: string;
     albumName: string;
+}
+
+export interface CollectionInfoInterface {
+    id: string,
+    collectionName: string,
+    description: string,
+    vinyls: albumData[]
+    
 }

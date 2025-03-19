@@ -2,6 +2,7 @@ import { CameraCapturedPicture } from "expo-camera";
 import { router } from "expo-router";
 import api from "../utils/axiosInstance";
 import Toast from "react-native-toast-message";
+import { albumData } from "../interfaces/vinyl";
 
 export default class VinylService {
     async identifyVinyl(photo: CameraCapturedPicture ) {
@@ -17,18 +18,22 @@ export default class VinylService {
 
             if (response.status == 200 && response.data.message == "Vinyl Identified") {
 
-                router.replace(`/pages/vinylResultsScreen?artist=${encodeURIComponent(response.data.artist)}&album=${encodeURIComponent(response.data.album)}`);
+                router.push(`/pages/vinylResultsScreen?artist=${encodeURIComponent(response.data.artist)}&album=${encodeURIComponent(response.data.album)}`);
             } else if (response.data.message == "Vinyl Not Identified") {
                 router.push(`/pages/vinylNotFound?key=${key}`);
             
             } else {
-                return 'Error Occurred while identifying vinyl';
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error!',
+                    text2: 'An Error has Occured :( ',
+                });    
             }
         } catch (error) {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :( ',
             });
         }
     }
@@ -47,22 +52,14 @@ export default class VinylService {
             if (response.status == 200) {
                 return response.url;
             } else {
-                Toast.show({
-                    type: 'error',
-                    text1: 'Error!',
-                    text2: 'An Error has Occured :( ',
-                });
+                throw new Error("Error Uploading to S3");
             }
         } catch (error) {
-            Toast.show({
-                type: 'error',
-                text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
-            });
+            throw new Error("Error Uploading to S3");
         }
     }
 
-    async getVinylWishlist() {
+    async getVinylWishlist(): Promise<albumData[]> {
         try {
             const response = await api.get('/vinyl/getAlbumsInlWishlist');
 
@@ -72,15 +69,17 @@ export default class VinylService {
                 Toast.show({
                     type: 'error',
                     text1: 'Error!',
-                    text2: 'An Error has Occured :( ',
+                    text2: 'An Error has Occured :( Error Fetching Vinyl Wishlist',
                 });
+                return [];
             }
         } catch (error) {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :( Error Fetching Vinyl Wishlist',
             });
+            return [];
         }
     }
 
@@ -91,14 +90,17 @@ export default class VinylService {
             if (response.status == 200) {
                 return [response.data.url,response.data.key];
             } else {
-                'Error Occurred while generating URL';
-                console.log(response)
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error!',
+                    text2: "An Error has Occured while generating a url :(",
+                });
             }
         } catch (error) {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: "An Error has Occured while generating a url :(",
             });
         }
     }
@@ -114,12 +116,12 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }
 
-    async getRecommendedVinyls(collectionId: string) {
+    async getRecommendedVinyls(collectionId: string): Promise<albumData[]> {
         try {
             const response = await api.get(`/vinyl/getRecommendations?collectionId=${collectionId}`);
 
@@ -131,6 +133,7 @@ export default class VinylService {
                 text1: 'Error!',
                 text2: 'An Error has Occured :( ' + error,
             });
+            return [];
         }
     }
 
@@ -143,7 +146,7 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }
@@ -163,7 +166,7 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }
@@ -185,7 +188,7 @@ export default class VinylService {
             Toast.show({
                 type: 'error',
                 text1: 'Error!',
-                text2: 'An Error has Occured :( ' + error,
+                text2: 'An Error has Occured :(',
             });
         }
     }

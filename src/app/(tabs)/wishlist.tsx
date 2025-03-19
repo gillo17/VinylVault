@@ -1,13 +1,10 @@
 import { Text, View, StyleSheet, FlatList, Image, ActivityIndicator, Dimensions } from 'react-native';
-import TextBox from '../components/textBox';
 import ToastProvider from '../components/ToastProvider';
-import { ViewCollectionModel } from '@/src/interfaces/collectionInterfaces';
 import { useState, useEffect } from 'react';
 import VinylService from '@/src/services/vinylService';
 import { albumData } from '@/src/interfaces/vinyl';
 
 const { width: viewportWidth } = Dimensions.get('window');
-
 
 export default function wishlistScreen() {
 

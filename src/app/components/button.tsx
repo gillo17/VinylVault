@@ -31,7 +31,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         { width: size_width },
         ]}>
         <Pressable style={stylesBackButton.button} onPress={onPress}>
-          <Ionicons name="arrow-back-outline" size={25} color="white" />
+          <Ionicons name="arrow-back-outline" size={25} color="white" testID="back-icon" />
         </Pressable>
       </View>
     );
@@ -43,7 +43,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         { width: size_width, paddingLeft: 50 },
         ]}>
         <Pressable style={stylesBackButton.button} onPress={onPress}>
-          <Ionicons name="search-outline" size={25} color="white" />
+          <Ionicons name="search-outline" size={25} color="white" testID="search-icon" />
         </Pressable>
       </View>
     );
@@ -55,7 +55,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         { width: size_width, paddingLeft: 50 },
         ]}>
         <Pressable style={stylesBackButton.button} onPress={onPress}>
-          <Ionicons name="heart-outline" size={25} color="white" />
+          <Ionicons name="heart-outline" size={25} color="white" testID="favourite-icon" />
         </Pressable>
       </View>
     );
