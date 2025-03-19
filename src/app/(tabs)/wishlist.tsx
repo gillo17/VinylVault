@@ -6,7 +6,6 @@ import { albumData } from '@/src/interfaces/vinyl';
 
 const { width: viewportWidth } = Dimensions.get('window');
 
-
 export default function wishlistScreen() {
 
   const [data, setData] = useState<albumData[] | undefined>([]);

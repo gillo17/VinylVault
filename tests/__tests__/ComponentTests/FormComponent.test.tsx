@@ -16,7 +16,7 @@ describe("Form Component Tests", () => {
         });
 
         it("should show error messages for required fields", async () => {
-            const { getByText, getByPlaceholderText } = render(<MyForm />);
+            const { getByText } = render(<MyForm />);
             fireEvent.press(getByText('Create Account'));
 
             await waitFor(() => {
