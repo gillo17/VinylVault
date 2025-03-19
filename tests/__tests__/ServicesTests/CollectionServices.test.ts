@@ -2,15 +2,14 @@ import Toast from "react-native-toast-message";
 import api from '../../../src/utils/axiosInstance';
 import CollectionService from '../../../src/services/collectionsService';
 import CollectionHelper from '../../TestHelpers/CollectionsHelper';
-import APIResponseHelper from '../../TestHelpers/apiResponseHelper';
 import { router } from "expo-router";
-
+import ResponseHelper from "../../TestHelpers/ResponseHelper";
 
 describe("CollectionServices", () => {
 
     const collectionService = new CollectionService();
     const collectionHelper = new CollectionHelper();
-    const apiResponseHelper = new APIResponseHelper();
+    const apiResponseHelper = new ResponseHelper();
 
     describe("Get Collection Tests", () => {
         it("should show an error toast when fetching collections fails", async () => {

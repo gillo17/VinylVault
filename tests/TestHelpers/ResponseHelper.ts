@@ -1,4 +1,4 @@
-class APIResponseHelper {
+class ResponseHelper {
 
     public successfulAPIResponse(responseMsg?: any) {
         if (responseMsg) {
@@ -18,4 +18,4 @@ class APIResponseHelper {
     }
 
 }
-export default APIResponseHelper;
+export default ResponseHelper;
