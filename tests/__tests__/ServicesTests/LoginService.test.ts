@@ -3,13 +3,13 @@ import api from '../../../src/utils/axiosInstance';
 import LoginService from '../../../src/services/loginService';
 import { router } from "expo-router";
 import LoginHelper from "../../TestHelpers/LoginHelper"; 
-import ApiResponseHelper from "../../TestHelpers/ApiResponseHelper";
+import ResponseHelper from "../../TestHelpers/ResponseHelper";
 
 describe("LoginService Tests", () => {
 
     const loginService = new LoginService();
     const loginHelper = new LoginHelper();
-    const apiResponseHelper = new ApiResponseHelper();
+    const apiResponseHelper = new ResponseHelper();
 
     describe("Login Tests", () => {
         it("should show an error toast when login fails", async () => {

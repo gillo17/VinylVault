@@ -3,13 +3,13 @@ import api from '../../../src/utils/axiosInstance';
 import CollectionService from '../../../src/services/collectionsService';
 import CollectionHelper from '../../TestHelpers/CollectionsHelper';
 import { router } from "expo-router";
-import ApiResponseHelper from "../../TestHelpers/ApiResponseHelper";
+import ResponseHelper from "../../TestHelpers/ResponseHelper";
 
 describe("CollectionServices", () => {
 
     const collectionService = new CollectionService();
     const collectionHelper = new CollectionHelper();
-    const apiResponseHelper = new ApiResponseHelper();
+    const apiResponseHelper = new ResponseHelper();
 
     describe("Get Collection Tests", () => {
         it("should show an error toast when fetching collections fails", async () => {
