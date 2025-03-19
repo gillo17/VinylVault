@@ -17,5 +17,9 @@ jest.mock("expo-router", () => ({
   },
 }));
 
+jest.mock('@expo/vector-icons', () => ({
+  Ionicons: 'Ionicons',
+}));
+
 jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');

@@ -1,39 +1,38 @@
-import {TextInput, StyleSheet} from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import React from 'react';
+import { TextInput, StyleSheet, View } from 'react-native';
 
-type Props = {
-    onChangeText?: (text: string) => void;
-    text?: string;
-    placeholderText?: string;
-    width?: number;
-  };
+interface MultilineTextBoxProps {
+  placeholderText?: string;
+  text?: string;
+  onChangeText?: (text: string) => void;
+  width?: number;
+}
 
-const MultilineTextBox = ({onChangeText, text, placeholderText, width }: Props) => {
-
+const MultilineTextBox: React.FC<MultilineTextBoxProps> = ({ placeholderText, text, onChangeText, width }) => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView>
-        <TextInput
-          editable
-          multiline
-          numberOfLines={4}
-          maxLength={150}
-          value={text}
-          style={[styles.textInput, {width: width}]}
-          onChangeText={onChangeText}
-          placeholder={placeholderText}
-        />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <View style={[styles.container, { width }]} testID="multiline-textbox">
+      <TextInput
+        style={styles.textInput}
+        placeholder={placeholderText}
+        multiline
+        value={text}
+        onChangeText={onChangeText}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  textInput: {
+  container: {
     padding: 10,
-    backgroundColor: '#fff',
+  },
+  textInput: {
+    height: 100,
+    borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 10
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#fff',
   },
 });
 
