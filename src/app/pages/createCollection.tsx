@@ -1,4 +1,3 @@
-import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import CollectionsService from '../../services/collectionsService';

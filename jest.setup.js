@@ -1,3 +1,6 @@
+import 'react-native-gesture-handler/jestSetup';
+import '@testing-library/jest-native/extend-expect';
+
 jest.mock("expo-constants", () => ({
     manifest: {
       android: { theme: "dark" },
@@ -13,3 +16,6 @@ jest.mock("expo-router", () => ({
     prefetch: jest.fn(),
   },
 }));
+
+jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');

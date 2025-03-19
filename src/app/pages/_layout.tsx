@@ -10,16 +10,18 @@ export default function PageLayout() {
   }
 
   return (
-    <Stack initialRouteName="pages">
+    <>
+      <Stack initialRouteName="createCollection">
+        <Stack.Screen name="createCollection" options={{ headerShown: false }} />
+        <Stack.Screen name="vinylResultsScreen" options={{ headerShown: false }} />
+        <Stack.Screen name="saveToCollection" options={{ headerShown: false }} />
+        <Stack.Screen name="vinylNotFound" options={{ headerShown: false }} />
+        <Stack.Screen name="collectionInfoPage" options={{ headerShown: false }} />
+        <Stack.Screen name="vinylInfo" options={{ headerShown: false }} />
+        <Stack.Screen name="submitImageForTraining" options={{ headerShown: false }} />
+        <Stack.Screen name="RecommendedVinyls" options={{ headerShown: false }} />
+      </Stack>
       <Toast />
-      <Stack.Screen name="createCollection" options={{ headerShown: false }} />
-      <Stack.Screen name="vinylResultsScreen" options={{ headerShown: false }} />
-      <Stack.Screen name="saveToCollection" options={{ headerShown: false }} />
-      <Stack.Screen name="vinylNotFound" options={{ headerShown: false }} />
-      <Stack.Screen name="collectionInfoPage" options={{ headerShown: false }} />
-      <Stack.Screen name="vinylInfo" options={{ headerShown: false }} />
-      <Stack.Screen name="submitImageForTraining" options={{ headerShown: false }} />
-      <Stack.Screen name="RecommendedVinyls" options={{ headerShown: false }} />
-    </Stack>
+    </>
   );
 }

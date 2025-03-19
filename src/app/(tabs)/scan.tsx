@@ -3,8 +3,6 @@ import { useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable } from 'react-native';
 import { CameraView, CameraCapturedPicture, useCameraPermissions } from 'expo-camera';
-import CollectionsService from '../../services/collectionsService';
-import * as ImagePicker from 'expo-image-picker';
 import VinylService from '@/src/services/vinylService';
 
 export default function scanScreen() {

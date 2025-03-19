@@ -5,11 +5,9 @@ import VinylService from '@/src/services/vinylService';
 import { useState } from 'react';
 import { useFocusEffect } from 'expo-router';
 import React from 'react';
-import Toast from 'react-native-toast-message';
 import ToastProvider from '../components/ToastProvider';
 
 const { width: viewportWidth } = Dimensions.get('window');
-
 
 export default function searchScreen() {
 

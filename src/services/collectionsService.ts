@@ -2,12 +2,10 @@ import Toast from 'react-native-toast-message';
 import { CollectionInfoInterface, CreateCollectionModel, SubmitImageForTraining, ViewCollectionModel } from '../interfaces/collectionInterfaces';
 import api from '../utils/axiosInstance';
 import { router } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
 
 export default class CollectionsService {
 
-    async getCollections(): Promise<ViewCollectionModel[]> {
+    async getCollections() {
 
         try {
             const response = await api.get('/collections/getCollections');
@@ -18,7 +16,6 @@ export default class CollectionsService {
                 text1: 'Error!',
                 text2: 'Error Fetching Collections',
             });
-            throw new Error('Error Occurred while getting a collection');
         }
     }
 
@@ -40,7 +37,6 @@ export default class CollectionsService {
                 text1: 'Error!',
                 text2: 'Error Creating Collection - This name may already exist',
             });
-            throw new Error('Error Occurred while creating a collection');
         }
     }
 
@@ -56,7 +52,6 @@ export default class CollectionsService {
                     text1: 'Error!',
                     text2: 'Error Occurred while submitting image for training',
                 });
-                throw new Error('Error Occurred while submitting image for training');
             }
         } catch (error) {
             Toast.show({
@@ -64,7 +59,6 @@ export default class CollectionsService {
                 text1: 'Error!',
                 text2: 'Error Occurred while submitting image for training',
             });
-            throw new Error('Error Occurred while submitting image for training');
         }
     }
 
@@ -92,7 +86,7 @@ export default class CollectionsService {
         }
     }
 
-    async getCollectionInfo(collectionId: string): Promise<CollectionInfoInterface> {
+    async getCollectionInfo(collectionId: string) {
         try {
             const response = await api.get(`/collections/getCollectionInfo?collectionID=${collectionId}`);
 
@@ -104,7 +98,6 @@ export default class CollectionsService {
                     text1: 'Error!',
                     text2: 'Error Occurred while fetching collection info'
                 });
-                throw new Error('Error Occurred while fetching collection info');
             }
         } catch (error) {
             Toast.show({
@@ -112,7 +105,6 @@ export default class CollectionsService {
                 text1: 'Error!',
                 text2: 'Error Occurred while fetching collection info'
             });
-            throw new Error('Error Occurred while fetching collection info');
         }
     }
 }

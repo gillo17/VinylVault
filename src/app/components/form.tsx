@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { View, Text, TextInput, StyleSheet, SafeAreaView } from 'react-native';
 import Button from './button';
@@ -18,7 +17,7 @@ function MyForm() {
       <View style={styles.container}>
         <Controller
           control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, onBlur, value = '' } }) => (
             <TextInput
               style={styles.input}
               placeholder="Firstname"
@@ -34,7 +33,7 @@ function MyForm() {
 
         <Controller
           control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, onBlur, value = '' } }) => (
             <TextInput
               style={styles.input}
               placeholder="Lastname"
@@ -50,7 +49,7 @@ function MyForm() {
 
         <Controller
           control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, onBlur, value = '' } }) => (
             <TextInput
               style={styles.input}
               placeholder="Email"
@@ -66,13 +65,14 @@ function MyForm() {
 
         <Controller
           control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, onBlur, value = '' } }) => (
             <TextInput
               style={styles.input}
               placeholder="Password"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
+              secureTextEntry={true}
             />
           )}
           name="password"

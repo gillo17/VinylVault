@@ -33,12 +33,12 @@ export default class LoginService {
     try {
       const response = await api.post('/user/createUser', accountInfo);
       if (response.status === 201) {
-        router.replace('/');
         Toast.show({
           type: 'info',
           text1: 'info!',
           text2: `Account Created!`,
         });
+        router.replace('/');
       } else if (response.data.errors) {
         Toast.show({
           type: 'error',

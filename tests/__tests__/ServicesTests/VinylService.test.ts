@@ -227,10 +227,15 @@ describe("Vinyl Service Tests", () => {
     describe("generateS3 Url Test", () => {
         it("should throw an error toast when getting an S3 url fails", async () => {
             jest.spyOn(api, 'get').mockRejectedValue(new Error('Error Getting S3 URL'));
+            jest.spyOn(Toast, 'show');
 
             await vinylService.generateS3Url();
 
-            expect(Error).toBeCalledWith('Error Getting S3 URL');
+            expect(Toast.show).toBeCalledWith({
+                type: 'error',
+                text1: 'Error!',
+                text2: 'An Error has Occured :(',
+            });        
         });
 
         it("should return s3 url getting an s3 url succeeds", async () => {

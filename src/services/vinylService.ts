@@ -83,17 +83,25 @@ export default class VinylService {
         }
     }
 
-    async generateS3Url(): Promise<[string, string]> {
+    async generateS3Url() {
         try {
             const response = await api.get('/collections/getUrl');
 
             if (response.status == 200) {
                 return [response.data.url,response.data.key];
             } else {
-                throw new Error('Error Occurred while generating URL');
+                Toast.show({
+                    type: 'error',
+                    text1: 'Error!',
+                    text2: "An Error has Occured while generating a url :(",
+                });
             }
         } catch (error) {
-            throw new Error('Error Occurred while generating URL');
+            Toast.show({
+                type: 'error',
+                text1: 'Error!',
+                text2: "An Error has Occured while generating a url :(",
+            });
         }
     }
 

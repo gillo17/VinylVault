@@ -13,7 +13,6 @@ const VinylVaultLogo = require('../../assets/images/VinylVaultLogo.png');
 let loginService = new LoginService();
 
 export default function logInScreen() {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,9 +21,9 @@ export default function logInScreen() {
   const { signIn } = useSession();
 
   const onSubmit = (data: LoginAccountInterface) => {
-    loginService.login(data, signIn)
+    loginService.login(data, signIn);
   };
-  
+
   return (
     <View style={styles.container}>
       <Image source={VinylVaultLogo} style={styles.image} />
@@ -32,14 +31,14 @@ export default function logInScreen() {
       <View style={styles.formContainer}>
         <Controller
           control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, onBlur, value = '' } }) => (
             <TextInput
               style={styles.input}
               placeholder="Email"
               onBlur={onBlur}
-              onChangeText={ text => {
-                onChange(text)
-                setEmail(text)
+              onChangeText={text => {
+                onChange(text);
+                setEmail(text);
               }}
               value={value}
             />
@@ -51,21 +50,21 @@ export default function logInScreen() {
 
         <Controller
           control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, onBlur, value = '' } }) => (
             <TextInput
               style={styles.input}
               placeholder="Password"
               onBlur={onBlur}
-              onChangeText={ text => {
-                onChange(text)
-                setPassword(text)
-              }}              
+              onChangeText={text => {
+                onChange(text);
+                setPassword(text);
+              }}
               value={value}
               secureTextEntry={true}
             />
           )}
           name="password"
-          rules={{ required: 'Please enter your lastname' }}
+          rules={{ required: 'Please enter your password' }}
         />
         {errors.password && <Text style={styles.errorText}>{errors.password.message?.toString()}</Text>}
 
@@ -73,7 +72,6 @@ export default function logInScreen() {
           <Button label="Create Account" size_width={125} onPress={() => router.replace('/createAccount')} />
           <Button theme="primary" label="Sign In" size_width={150} onPress={handleSubmit(onSubmit)} />
         </View>
-
       </View>
     </View>
   );
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2DDCE',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 150
+    paddingBottom: 150,
   },
   formContainer: {
     paddingTop: 25,
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#fff',
   },
-   image: {
+  image: {
     width: 300,
     height: 350,
   },
@@ -113,5 +111,5 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
-  }
+  },
 });

@@ -11,7 +11,6 @@ export default function RecommendedVinyls() {
     const [data, setData] = useState<any | undefined>([]);
     const [loading, setLoading] = useState(true);    
     const collectionId = useLocalSearchParams<{ collectionId: string }>();
-    const { width: viewportWidth } = Dimensions.get('window');    
 
     const vinylService = new VinylService();
 
