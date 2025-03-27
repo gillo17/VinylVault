@@ -6,9 +6,10 @@ type Props = {
   theme?: string | undefined;
   size_width?: number;
   onPress?: () => void;
+  testID?: string;
 };  
 
-export default function Button({ label, theme, size_width, onPress }: Props) {
+export default function Button({ label, theme, size_width, onPress, testID }: Props) {
   if (theme === 'primary') {
     return (
       <View
@@ -17,6 +18,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         { width: size_width },
         ]}>
         <Pressable
+          testID={testID}
           style={[styles.button, { backgroundColor: '#207178' }]}
           onPress={onPress}>
           <Text style={[styles.buttonLabel, { color: '#fff' }]}>{label}</Text>
@@ -30,7 +32,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         stylesBackButton.buttonContainer, 
         { width: size_width },
         ]}>
-        <Pressable style={stylesBackButton.button} onPress={onPress}>
+        <Pressable style={stylesBackButton.button} testID={testID} onPress={onPress}>
           <Ionicons name="arrow-back-outline" size={25} color="white" testID="back-icon" />
         </Pressable>
       </View>
@@ -42,7 +44,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         stylesBackButton.buttonContainer, 
         { width: size_width, paddingLeft: 50 },
         ]}>
-        <Pressable style={stylesBackButton.button} onPress={onPress}>
+        <Pressable style={stylesBackButton.button} testID={testID} onPress={onPress}>
           <Ionicons name="search-outline" size={25} color="white" testID="search-icon" />
         </Pressable>
       </View>
@@ -54,7 +56,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         stylesBackButton.buttonContainer, 
         { width: size_width, paddingLeft: 50 },
         ]}>
-        <Pressable style={stylesBackButton.button} onPress={onPress}>
+        <Pressable style={stylesBackButton.button} testID={testID} onPress={onPress}>
           <Ionicons name="heart-outline" size={25} color="white" testID="favourite-icon" />
         </Pressable>
       </View>
@@ -67,6 +69,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
         { width: size_width },
         ]}>
         <Pressable
+          testID={testID}
           style={[styles.button, { backgroundColor: '#FF9666' }]}
           onPress={onPress}>
           <Text style={[styles.buttonLabel, { color: '#fff' }]}>{label}</Text>
@@ -77,7 +80,7 @@ export default function Button({ label, theme, size_width, onPress }: Props) {
 
   return (
     <View style={[styles.buttonContainer, { width: size_width }]}>
-      <Pressable style={styles.button} onPress={onPress}>
+      <Pressable style={styles.button} testID={testID} onPress={onPress}>
         <Text style={[styles.buttonLabel, {color: '#000'}]}>{label}</Text>
       </Pressable>
     </View>

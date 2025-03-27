@@ -43,7 +43,7 @@ export default function searchScreen() {
             onChangeText={setSearchQuery}
             text={searchQuery}
           ></TextBox>
-          <Button theme='searchButton' onPress={() => searchForAlbum()} ></Button>
+          <Button testID='search-button' theme='searchButton' onPress={() => searchForAlbum()} ></Button>
         </View>
         <View style={{flex: 1}}>
           <FlatList

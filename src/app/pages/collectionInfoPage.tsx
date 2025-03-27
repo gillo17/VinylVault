@@ -3,10 +3,13 @@ import { useEffect, useState } from 'react';
 import CollectionsService from '../../services/collectionsService';
 import { router, useLocalSearchParams } from 'expo-router';
 import Button from '../components/button';
+import { CollectionInfoInterface } from '../../interfaces/collectionInterfaces';
+
+const noAlbumCoverImage = require('../../../assets/images/noAlbumCover.png');
 
 export default function saveToCollection() {
 
-    const [data, setData] = useState<any | undefined>([]);
+    const [data, setData] = useState<CollectionInfoInterface>();
     const [loading, setLoading] = useState(true);    
     const { collectionId } = useLocalSearchParams<{ collectionId: string }>();
 
@@ -19,13 +22,21 @@ export default function saveToCollection() {
     useEffect(() => {
         const fetchData = async () => {
             const res = await collectionsService.getCollectionInfo(collectionId);
-            
+
             setData(res)
             setLoading(false);
         };
   
         fetchData();
     }, []);
+
+  if (data == undefined) {
+    return (
+      <View style={styles.center}>
+        <Text style={styles.text}>No data found</Text>
+      </View>
+    );
+  }
 
   if (loading) {
     return (
@@ -40,10 +51,15 @@ export default function saveToCollection() {
           <Button theme="backButton" onPress={() => router.back()}></Button>
       </View>
       <View style={styles.headingContainer}>
+        { data.collectionImage == undefined || data?.collectionImage == "" ? (
+            <Image source={noAlbumCoverImage} style={{ width: 100, height: 100 }} /> 
+          ) : (
+            <Image source={{ uri: data.collectionImage }} style={{ width: 100, height: 100 }} /> 
+        )}
         <Text style={styles.headingText}>{data.collectionName}</Text>
         <Text style={styles.text}>{data.description}</Text>
         <View style={styles.buttonContainer}>
-            <Button theme="secondary" label="Recommended" onPress={() => router.push(`/pages/RecommendedVinyls?collectionId=${encodeURIComponent(collectionId)}`)} size_width={125}/>
+            <Button theme="secondary" label="Recommended" onPress={() => router.push(`/pages/recommendedVinyls?collectionId=${encodeURIComponent(collectionId)}`)} size_width={125}/>
             <Button theme="secondary" label="Edit" size_width={150} />
         </View>
       </View>

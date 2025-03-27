@@ -3,6 +3,7 @@ import { albumData } from "./vinyl";
 export interface ViewCollectionModel {
     id: string;
     collectionName: string;
+    collectionImage: string;
 }
 
 export interface CreateCollectionModel {
@@ -25,6 +26,7 @@ export interface CollectionInfoInterface {
     id: string,
     collectionName: string,
     description: string,
+    collectionImage: string,
     vinyls: albumData[]
     
 }

@@ -7,10 +7,12 @@ class CollectionHelper {
             {
                 id: '1',
                 collectionName: 'Collection 1',
+                collectionImage: "someur.com/image.jpg"
             },
             {
                 id: '2',
                 collectionName: 'Collection 2',
+                collectionImage: "someur.com/image.jpg"
             }
         ]
     }

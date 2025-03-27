@@ -1,10 +1,12 @@
-import { Text, View, StyleSheet, Pressable, ActivityIndicator, FlatList, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Pressable, ActivityIndicator, FlatList, Dimensions , Image} from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useState } from 'react';
 import CollectionsService from '../../services/collectionsService';
 import { ViewCollectionModel } from '../../interfaces/collectionInterfaces';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { router } from 'expo-router';
+
+const { width: viewportWidth } = Dimensions.get('window');
+const noAlbumCoverImage = require('../../../assets/images/noAlbumCover.png');
 
 export default function collectionsScreen() {
 
@@ -26,7 +28,7 @@ export default function collectionsScreen() {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#0000ff" testID='loading-indicator' />
       </View>
     );
   }
@@ -44,19 +46,28 @@ export default function collectionsScreen() {
       </View>
       <View style={{flex: 1}}>
         <FlatList
+          testID='collection-flatlist'
           style={styles.list}
           data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View style={styles.item}>
-              <Pressable onPress={() => router.push(`/pages/collectionInfoPage?collectionId=${encodeURIComponent(item.id)}`)}>
-                <MaterialCommunityIcons name="inbox-outline" size={100} color="white" />
-                <Text style={styles.text}>{item.collectionName}</Text>
-              </Pressable>
+                <Pressable onPress={() => router.push(`/pages/collectionInfoPage?collectionId=${encodeURIComponent(item.id)}`)}>
+                  <View style={styles.row}>
+                    { item.collectionImage == undefined || item.collectionImage == "" ? (
+                      <Image source={noAlbumCoverImage} style={{ width: 100, height: 100 }} /> 
+                    ) : (
+                      <Image source={{ uri: item.collectionImage }} style={{ width: 100, height: 100 }} /> 
+                    )}
+                      <View style={styles.nameContainer}>
+                      <Text style={[styles.text, { color: 'black', fontSize: 22 }]}>{item.collectionName}</Text>
+                      </View>
+                  </View>
+                </Pressable>
             </View>
           )}
           contentContainerStyle={styles.itemContainer}
-          numColumns={3}
+          numColumns={1}
         />
       </View>
     </View>
@@ -97,15 +108,24 @@ const styles = StyleSheet.create({
     padding: 10
   },
   item: {
-    backgroundColor: '#207178',
     marginVertical: 8,
     borderRadius: 5,
     alignItems: 'center',
     margin: 10,
   },
+  row: {
+    width: viewportWidth * 0.75,
+    flexDirection: 'row',
+    alignItems: 'center' 
+  },
   text: {
     fontSize: 18,
     color: '#fff',
+  },
+  nameContainer:{
+    padding: 20,
+    paddingLeft: 10,
+    flex: 1
   },
   center: {
     flex: 1,

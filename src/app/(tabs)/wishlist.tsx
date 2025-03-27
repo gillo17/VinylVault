@@ -26,7 +26,7 @@ export default function wishlistScreen() {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#0000ff" testID='loading-indicator'/>
       </View>
     );
   }
@@ -39,6 +39,7 @@ export default function wishlistScreen() {
         </View>
         <View style={{flex: 1}}>
           <FlatList
+            testID="wishlist-flatlist"
             style={styles.list}
             data={data}
             keyExtractor={(item) => item.spotifyID}
