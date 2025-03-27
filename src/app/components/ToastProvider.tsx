@@ -1,8 +1,8 @@
-import Toast from 'react-native-toast-message';
-import toastConfig from './ToastConfig';
+import Toast from 'react-native-toast-message'
+import toastConfig from './ToastConfig'
 
 const ToastProvider = () => {
-  return <Toast config={toastConfig} />;
-};
+    return <Toast config={toastConfig} />
+}
 
-export default ToastProvider;
+export default ToastProvider

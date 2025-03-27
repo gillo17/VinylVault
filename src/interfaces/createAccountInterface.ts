@@ -1,8 +1,8 @@
 interface CreateAccountInterface {
-    firstname: string;
-    lastname: string;
-    email: string;
-    password: string;
+    firstname: string
+    lastname: string
+    email: string
+    password: string
 }
 
-export default CreateAccountInterface;
+export default CreateAccountInterface
