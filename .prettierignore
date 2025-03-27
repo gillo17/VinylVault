@@ -1,0 +1,11 @@
+dist
+node_modules
+coverage
+build
+__mocks__
+.expo
+.vscode
+package-lock.json
+package.json
+README.md
+.github

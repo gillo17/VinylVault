@@ -1,19 +1,18 @@
-import { ViewCollectionModel } from "../../src/interfaces/collectionInterfaces";
+import { ViewCollectionModel } from '../../src/interfaces/collectionInterfaces'
 
 class CollectionHelper {
-
-    public generateCollections() : ViewCollectionModel[] {
+    public generateCollections(): ViewCollectionModel[] {
         return [
             {
                 id: '1',
                 collectionName: 'Collection 1',
-                collectionImage: "someur.com/image.jpg"
+                collectionImage: 'someur.com/image.jpg',
             },
             {
                 id: '2',
                 collectionName: 'Collection 2',
-                collectionImage: "someur.com/image.jpg"
-            }
+                collectionImage: 'someur.com/image.jpg',
+            },
         ]
     }
 
@@ -24,19 +23,18 @@ class CollectionHelper {
     }
 
     public generateSubmitImageForTraining() {
-
         return {
             collectionID: '1',
             vinylID: '1',
-            image: 'image'
-        }   
+            image: 'image',
+        }
     }
 
     public generateSubmitImageForTrainingResponse() {
         return {
-            s3Key: "s3Key",
-            Artist: "Artist",
-            AlbumName: "AlbumName"
+            s3Key: 's3Key',
+            Artist: 'Artist',
+            AlbumName: 'AlbumName',
         }
     }
 
@@ -47,14 +45,14 @@ class CollectionHelper {
             description: 'Description',
             vinyls: [
                 {
-                    albumName: "Album Name",
-                    artist: "Artist",
-                    albumImage: "Album Image",
-                    spotifyID: "Spotify ID",
-                    spotifyArtistID: "Spotify Artist ID"
-                }
-            ]
+                    albumName: 'Album Name',
+                    artist: 'Artist',
+                    albumImage: 'Album Image',
+                    spotifyID: 'Spotify ID',
+                    spotifyArtistID: 'Spotify Artist ID',
+                },
+            ],
         }
     }
 }
-export default CollectionHelper;
+export default CollectionHelper
